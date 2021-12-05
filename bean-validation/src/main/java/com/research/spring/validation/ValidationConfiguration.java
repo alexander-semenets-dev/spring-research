@@ -18,7 +18,7 @@ public class ValidationConfiguration {
                 .byProvider(HibernateValidator.class)
                 .configure();
 
-        final EitherFieldsValidationDefinition validModelDefinition = new EitherFieldsValidationDefinition()
+        final EitherFieldsConstraintDefinition validModelDefinition = new EitherFieldsConstraintDefinition()
                 .message("Only one field should be present")
                 .addParameter("fieldNames", new String[]{"field1", "field2"});
 

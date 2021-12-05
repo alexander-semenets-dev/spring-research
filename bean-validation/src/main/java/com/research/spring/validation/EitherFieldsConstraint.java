@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = {
         EitherFieldsValidator.class
 })
-public @interface EitherFieldsValidation {
+public @interface EitherFieldsConstraint {
 
     String message() default "{com.example.validation.ValidAddress.message}";
 

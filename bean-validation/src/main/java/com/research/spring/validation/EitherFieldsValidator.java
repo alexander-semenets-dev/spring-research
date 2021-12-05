@@ -11,11 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EitherFieldsValidator implements ConstraintValidator<EitherFieldsValidation, Model> {
+public class EitherFieldsValidator implements ConstraintValidator<EitherFieldsConstraint, Model> {
 
     private List<String> fieldNames;
 
-    public void initialize(EitherFieldsValidation constraintAnnotation) {
+    public void initialize(EitherFieldsConstraint constraintAnnotation) {
         fieldNames = Arrays.stream(constraintAnnotation.fieldNames())
                 .collect(Collectors.toList());
     }
@@ -26,11 +26,11 @@ public class EitherFieldsValidator implements ConstraintValidator<EitherFieldsVa
             ConstraintValidatorContext constraintValidatorContext
     ) {
         final int countOfPresentFields = fieldNames.stream()
-                .mapToInt(s -> {
-                    final Field field = FieldUtils.getField(model.getClass(), s, true);
-                    final String field1 = (String) ReflectionUtils.getField(field, model);
+                .mapToInt(fieldName -> {
+                    final Field field = FieldUtils.getField(model.getClass(), fieldName, true);
+                    final String fieldValue = (String) ReflectionUtils.getField(field, model);
 
-                    return StringUtils.isNotEmpty(field1) ? 1 : 0;
+                    return StringUtils.isNotEmpty(fieldValue) ? 1 : 0;
                 })
                 .sum();
 
