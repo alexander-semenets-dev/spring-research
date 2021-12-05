@@ -15,7 +15,6 @@ import javax.validation.Validator;
 @RequiredArgsConstructor
 public class ModelController {
 
-    private final Validator modelValidator;
     private final ModelRepository modelRepository;
 
     @PostMapping
