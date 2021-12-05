@@ -1,1 +1,4 @@
-rootProject.name = 'spring-validation-research'
+rootProject.name = 'spring-research'
+
+include 'bean-validation'
+
